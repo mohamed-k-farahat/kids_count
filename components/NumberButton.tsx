@@ -26,7 +26,7 @@ export const NumberButton: React.FC<NumberButtonProps> = ({
       whileTap={!disabled ? { scale: 0.95 } : {}}
       animate={
         isWrong 
-          ? { x: [-6, 6, -6, 6, 0], rotate: [0, -3, 3, 0] } 
+          ? { x: [-10, 10, -10, 10, 0], rotate: [0, -5, 5, 0, -5, 5, 0] } 
           : isSuccess 
             ? { 
                 scale: [1, 1.2, 1.1], 
@@ -44,7 +44,12 @@ export const NumberButton: React.FC<NumberButtonProps> = ({
         flex items-center justify-center
         text-4xl sm:text-5xl md:text-6xl font-bold text-white
         transition-all duration-300
-        ${isSuccess ? 'bg-green-500 !opacity-100 ring-4 ring-green-200' : colorClass}
+        ${isSuccess 
+          ? 'bg-green-500 !opacity-100 ring-4 ring-green-200' 
+          : isWrong 
+            ? 'bg-red-500 ring-4 ring-red-200' 
+            : colorClass
+        }
         ${(disabled && !isSuccess) ? 'opacity-40 cursor-not-allowed scale-95 grayscale-[0.5]' : 'cursor-pointer hover:brightness-110'}
       `}
     >
